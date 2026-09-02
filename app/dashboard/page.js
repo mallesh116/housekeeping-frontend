@@ -20,8 +20,12 @@ export default function Dashboard() {
       return;
     }
 
-    if (userData) {
-      setUser(JSON.parse(userData));
+    if (userData && userData !== 'undefined') {
+      try {
+        setUser(JSON.parse(userData));
+      } catch (e) {
+        console.error('Failed to parse user data:', e);
+      }
     }
 
     fetchDashboardData();
